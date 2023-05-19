@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-module Concerns
-  module IssueTemplate
-    module Common
+    module IssueTemplateCommon
       extend ActiveSupport::Concern
 
       #
@@ -108,5 +106,3 @@ module Concerns
         "copy_of_#{title}"
       end
     end
-  end
-end
