@@ -216,7 +216,8 @@ class IssueTemplatesController < ApplicationController
   def template_params
     params.require(:issue_template).permit(:tracker_id, :title, :note, :issue_title, :description, :is_default,
                                            :enabled, :author_id, :position, :enabled_sharing,
-                                           :related_link, :link_title, :builtin_fields)
+                                           :related_link, :link_title, :builtin_fields,
+                                           checklists: [])
   end
 
   def templates_exist?
@@ -230,7 +231,7 @@ class IssueTemplatesController < ApplicationController
 
     { layout: !request.xhr?,
       locals: { issue_template: template, project: @project, child_project_used_count: child_project_used_count,
-                custom_fields: custom_fields.to_s, builtin_fields_enable: builtin_fields_enabled? } }
+        checklist_enabled: checklist_enabled?, custom_fields: custom_fields.to_s, builtin_fields_enable: builtin_fields_enabled? } }
   end
 
   def loadable_trigger?
